@@ -1,0 +1,14 @@
+{
+  "recommendations": [
+    "alexcvzz.vscode-sqlite",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "gruntfuggly.todo-tree",
+    "mtxr.sqltools",
+    "pwabuilder.pwa-studio",
+    "richie5um2.vscode-sort-json",
+    "voorjaar.windicss-intellisense",
+    "vue.volar",
+    "webhint.vscode-webhint"
+  ]
+}

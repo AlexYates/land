@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS products (
+  price REAL NOT NULL,
+  title TEXT NOT NULL,
+  uuid TEXT NOT NULL UNIQUE
+);

@@ -1,0 +1,6 @@
+*/node_modules
+*.js
+*.db
+*.db-shm
+*.db-wal
+*.sh
