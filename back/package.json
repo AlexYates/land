@@ -17,7 +17,9 @@
   "scripts": {
     "build:c": "tsc -p tsconfig.json",
     "build": "tsc --removeComments -p tsconfig.json",
+    "clean": "rm ./src/**/*.catdog",
     "dev": "DEBUG=*:* ts-node-dev --respawn ./src/index.ts --trace-io",
+    "dev:w": "ts-node-dev --respawn ./src/index.ts --trace-io",
     "start": "node ./src/index.js"
   }
 }

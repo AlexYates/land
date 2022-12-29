@@ -8,12 +8,12 @@ const createOne = async (parameters: Product) => {
   return repositories.createOne(parameters);
 };
 
-const getAll = async () => {
-  return repositories.getAll();
+const readAll = async () => {
+  return repositories.readAll();
 };
 
-const getOne = async (parameters: { uuid: UUID }) => {
-  return repositories.getOne(parameters);
+const readOne = async (parameters: { uuid: UUID }) => {
+  return repositories.readOne(parameters);
 };
 
 const updateOne = async (parameters: Product) => {
@@ -26,8 +26,8 @@ const deleteOne = async (parameters: { uuid: UUID }) => {
 
 export default {
   createOne,
-  getAll,
-  getOne,
+  readAll,
+  readOne,
   updateOne,
   deleteOne,
 };

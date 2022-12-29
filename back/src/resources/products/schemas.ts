@@ -1,52 +1,97 @@
-console.log("Products:Routes");
+console.log("Products:Schemas");
+
+const properties = {
+  price: { type: "number" },
+  title: { type: "string" },
+  uuid: { type: "string" },
+};
 
 const createOne = {
-  type: "object",
-  properties: {
-    price: { type: "number" },
-    title: { type: "string" },
-    uuid: { type: "string" },
-    //
-    // test: { type: "string" },
+  schema: {
+    body: {
+      properties,
+      required: ["price", "title", "uuid"],
+      type: "object",
+    },
+    response: {
+      200: {
+        properties,
+        type: "object",
+      },
+    },
   },
-  required: [
-    "price",
-    "title",
-    "uuid",
-    //
-    // "test",
-  ],
+};
+
+const readAll = {
+  schema: {
+    response: {
+      200: {
+        items: {
+          properties,
+          type: "object",
+        },
+        type: "array",
+      },
+    },
+  },
 };
 
 const readOne = {
-  type: "object",
-  properties: {
-    uuid: { type: "string" },
+  schema: {
+    params: {
+      properties: {
+        uuid: { type: "string" },
+      },
+      required: ["uuid"],
+      type: "object",
+    },
+    response: {
+      200: {
+        properties,
+        type: "object",
+      },
+    },
   },
-  required: ["uuid"],
 };
 
 const updateOne = {
-  type: "object",
-  properties: {
-    price: { type: "number" },
-    title: { type: "string" },
-    uuid: { type: "string" },
+  schema: {
+    body: {
+      properties,
+      required: ["price", "title", "uuid"],
+      type: "object",
+    },
+    response: {
+      200: {
+        properties,
+        type: "object",
+      },
+    },
   },
-  required: ["price", "title", "uuid"],
 };
 
 const deleteOne = {
-  type: "object",
-  properties: {
-    uuid: { type: "string" },
+  schema: {
+    body: {
+      properties: {
+        uuid: { type: "string" },
+      },
+      required: ["uuid"],
+      type: "object",
+    },
   },
-  required: ["uuid"],
+  response: {
+    200: {
+      properties,
+      type: "object",
+    },
+  },
 };
 
 export default {
   createOne,
-  getOne: readOne,
+  readAll,
+  readOne,
   updateOne,
   deleteOne,
 };

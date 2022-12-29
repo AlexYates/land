@@ -17,30 +17,30 @@ import statements from "./statements";
   insertMany(items);
 })();
 
-export const createOne = async (parameters: any) => {
+const createOne = async (parameters: any) => {
   return database.prepare(await statements.createOne).run(parameters);
 };
 
-export const getAll = async () => {
+const readAll = async () => {
   return database.prepare(await statements.readAll).all();
 };
 
-export const getOne = async (parameters: any) => {
+const readOne = async (parameters: any) => {
   return await database.prepare(await statements.readOne).get(parameters);
 };
 
-export const updateOne = async (parameters: any) => {
+const updateOne = async (parameters: any) => {
   return database.prepare(await statements.updateOne).run(parameters);
 };
 
-export const deleteOne = async (parameters: any) => {
+const deleteOne = async (parameters: any) => {
   return database.prepare(await statements.deleteOne).run(parameters);
 };
 
 export default {
   createOne,
-  getAll,
-  getOne,
+  readAll,
+  readOne,
   updateOne,
   deleteOne,
 };

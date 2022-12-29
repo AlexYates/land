@@ -2,8 +2,6 @@ console.log("Products:Routes");
 
 import { server } from "../../server";
 import { FastifyReply, FastifyRequest } from "fastify";
-import { Product } from "./type";
-import { UUID } from "../../types";
 import schemas from "./schemas";
 import services from "./services";
 
@@ -12,55 +10,54 @@ server.register(
     // createOne
     instance.post(
       "/",
-      { schema: { body: schemas.createOne } },
+      schemas.createOne,
       async (
         { body: { price, title, uuid } }: any | FastifyRequest,
         reply: FastifyReply
       ) => {
-        const parameters: Product = { price, title, uuid };
-        const data = await services.createOne(parameters);
-        reply.send(data);
+        return await reply.send(
+          await services.createOne({ price, title, uuid })
+        );
       }
     );
-    // getAll
-    instance.get("/", async (_request: FastifyRequest, reply: FastifyReply) => {
-      const data = await services.getAll();
-      reply.send(data);
-    });
-    // getOne
+    // readAll
+    instance.get(
+      "/",
+      schemas.readAll,
+      async (_request: FastifyRequest, reply: FastifyReply) => {
+        return await reply.send(await services.readAll());
+      }
+    );
+    // readOne
     instance.get(
       "/:uuid",
-      { schema: { params: schemas.getOne } },
+      schemas.readOne,
       async (
         { params: { uuid } }: any | FastifyRequest,
         reply: FastifyReply
       ) => {
-        const parameters: { uuid: UUID } = { uuid };
-        const data = await services.getOne(parameters);
-        reply.send(data);
+        return await reply.send(await services.readOne({ uuid }));
       }
     );
     // updateOne
     instance.patch(
       "/",
-      { schema: { body: schemas.updateOne } },
+      schemas.updateOne,
       async (
         { body: { price, title, uuid } }: any | FastifyRequest,
         reply: FastifyReply
       ) => {
-        const parameters: Product = { price, title, uuid };
-        const data = await services.updateOne(parameters);
-        reply.send(data);
+        return await reply.send(
+          await services.updateOne({ price, title, uuid })
+        );
       }
     );
     // deleteOne
     instance.delete(
       "/",
-      { schema: { body: schemas.deleteOne } },
+      schemas.deleteOne,
       async ({ body: { uuid } }: any | FastifyRequest, reply: FastifyReply) => {
-        const parameters: { uuid: UUID } = { uuid };
-        const data = await services.deleteOne(parameters);
-        reply.send(data);
+        return await reply.send(await services.deleteOne({ uuid }));
       }
     );
     next();
